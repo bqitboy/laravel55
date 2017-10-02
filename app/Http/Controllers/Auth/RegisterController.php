@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Models\admin\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -44,6 +44,7 @@ class RegisterController extends Controller
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
+     * 字段验证
      */
     protected function validator(array $data)
     {
@@ -58,14 +59,23 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Models\admin\User
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'avatar' => '/images/avatars/dangran.gif',
+            'confirmation_token' => str_random(40)
         ]);
+
+        if(is_null($user)) {
+            return redirect('/');
+        } else {
+            return redirect('/home');
+        }
     }
+
 }

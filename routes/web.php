@@ -14,3 +14,19 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::group(['namespace' => 'Admin'], function () {
+    // 在 "App\Http\Controllers\Admin" 命名空间下的控制器
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    //发布问题
+    Route::resource('questions', 'QuestionController', ['names' => [
+
+        'create'    =>  'question.create'
+
+    ]]);
+    //Route::get('email/verify/{token}', ['as' => 'email.verify', 'uses' => 'EmailController@verify']);
+});
+

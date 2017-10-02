@@ -65,7 +65,8 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+//    'timezone' => 'UTC',
+    'timezone' => 'PRC',
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +79,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'cn',
 
     /*
     |--------------------------------------------------------------------------
@@ -91,7 +92,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'cn',
 
     /*
     |--------------------------------------------------------------------------
@@ -168,6 +169,14 @@ return [
          * Package Service Providers...
          */
 
+        //邮箱服务
+        Naux\Mail\SendCloudServiceProvider::class,
+        //友情提示
+        Laracasts\Flash\FlashServiceProvider::class,
+        //编辑器
+        Overtrue\LaravelUEditor\UEditorServiceProvider::class,
+        //七牛
+        Overtrue\LaravelFilesystem\Qiniu\QiniuStorageServiceProvider::class,
         /*
          * Application Service Providers...
          */

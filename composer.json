@@ -7,8 +7,15 @@
     "require": {
         "php": ">=7.0.0",
         "fideloper/proxy": "~3.3",
+        "guzzlehttp/guzzle": "^6.3",
+        "guzzlehttp/psr7": "^1.4",
+        "laracasts/flash": "^3.0",
         "laravel/framework": "5.5.*",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "naux/sendcloud": "^1.1",
+        "overtrue/laravel-filesystem-qiniu": "^1.0",
+        "overtrue/laravel-ueditor": "~1.0",
+        "psr/http-message": "^1.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
