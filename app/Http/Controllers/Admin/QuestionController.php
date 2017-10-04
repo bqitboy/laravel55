@@ -25,8 +25,8 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
-        return '111111';
+        $questions = $this->questionRepository->getQuestionsFeed();
+        return view('questions.index', compact('questions'));
     }
 
     /**
@@ -80,7 +80,7 @@ class QuestionController extends Controller
     {
         //根据id获取关联话题(标签)
         //$question = Question::where('id', $id)->with('topics')->first();
-        $question = $this->questionRepository->byIdWithTopics($id);
+        $question = $this->questionRepository->byIdWithTopicsAndAnswers($id);
         return view('questions.show', compact('question'));
     }
 
@@ -131,7 +131,11 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $question = $this->questionRepository->byId($id);
+        if(Auth::user()->owns($question)) {
+            $question->delete();
+            return redirect('questions');
+        }
     }
 
 }

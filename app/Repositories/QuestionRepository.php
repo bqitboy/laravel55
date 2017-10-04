@@ -7,9 +7,9 @@ use App\Models\admin\Topic;
 
 class QuestionRepository
 {
-    public function byIdWithTopics($id)
+    public function byIdWithTopicsAndAnswers($id)
     {
-        return Question::where('id', $id)->with('topics')->first();
+        return Question::where('id', $id)->with(['topics', 'answers'])->first();
     }
 
     //数据入库
@@ -35,5 +35,11 @@ class QuestionRepository
             $newTopic = Topic::create(['name' => $topic, 'questions_conunt' => 1]);
             return $newTopic->id;
         })->toArray();
+    }
+
+    public function getQuestionsFeed()
+    {
+        //return Question::published()->latest('updated_at')->with('users')->get();
+        return  Question::latest('updated_at')->with('user')->get();
     }
 }
