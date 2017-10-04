@@ -24,7 +24,8 @@ Route::group(['namespace' => 'Admin'], function () {
     //发布问题
     Route::resource('questions', 'QuestionController', ['names' => [
 
-        'create'    =>  'question.create'
+        'create'    =>  'question.create',
+        'show'    =>  'question.show',
 
     ]]);
     //Route::get('email/verify/{token}', ['as' => 'email.verify', 'uses' => 'EmailController@verify']);

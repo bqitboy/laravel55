@@ -16,11 +16,12 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <form action="/questions" method="post">
+                        <form action="/questions/{{ $question->id }}" method="post">
+                            {!! method_field('PATCH') !!}
                             {!! csrf_field() !!}
                             <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                                 <label for="title">标题</label>
-                                <input type="text" class="form-control" id="title" name="title" placeholder="标题" required value="{{ old('title') }}">
+                                <input type="text" class="form-control" id="title" name="title" placeholder="标题" required value="{{ $question->title }}">
 
                                 @if ($errors->has('title'))
                                     <span class="help-block">
@@ -31,13 +32,16 @@
                             <div class="form-group">
                                 <label for="topic">话题</label>
                                 <select class="js-example-placeholder-multiple form-control" name="topic[]" multiple="multiple" id="topic">
+                                    @foreach($question->topics as $topic)
+                                        <option vlaue="{{ $topic->id }}" selected> {{ $topic->name }}</option>
+                                    @endforeach
                                 </select>
 
                             </div>
                             <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
                                 <label for="container">内容</label>
                                 <!-- 编辑器容器 -->
-                                <script id="container" name="content" type="text/plain" >{!! old('content') !!}</script>
+                                <script id="container" name="content" type="text/plain" >{!! $question->content !!}</script>
 
                                 @if ($errors->has('content'))
                                     <span class="help-block">
