@@ -138,4 +138,7 @@ class QuestionController extends Controller
         }
     }
 
+    //表单提交都需要token验证
+    //内部隐藏 csrf_field
+
 }
