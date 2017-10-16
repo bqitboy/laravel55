@@ -36,4 +36,5 @@ Route::group(['prefix' => 'everan', 'namespace' => 'Index', 'middleware' => ['we
 });
 
 Route::get('everan/admin', 'Index\IndexController@admin')->middleware(['web', 'admin.login']);
+Route::get('everan/check', 'Index\IndexController@check')->middleware(['web', 'admin.login']);
 
